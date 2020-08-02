@@ -10,6 +10,7 @@ import {
 import InfoBox from './components/InfoBox'
 import Map from './components/Map'
 import Table from './components/Table/Table'
+import Chart from './components/Chart/Chart'
 import { sortData } from './utils'
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
 	const [country, setCountry] = useState('worldwide')
 	const [countryInfo, setCountryInfo] = useState({})
 	const [tableData, setTableData] = useState([])
+	const [casesType, setCasesType] = useState('cases')
 
 	useEffect(() => {
 		const getWorldwide = async () => {
@@ -62,6 +64,8 @@ function App() {
 			})
 	}
 	console.log('info', countryInfo)
+	console.log('info name', countryInfo.country)
+	console.log('country', country)
 
 	return (
 		<div className='app'>
@@ -94,7 +98,7 @@ function App() {
 				</CardContent>
 				<CardContent>
 					<h1>Worldwide new cases</h1>
-					{/* Graph */}
+					<Chart casesType={casesType} />
 				</CardContent>
 			</Card>
 		</div>

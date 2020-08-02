@@ -6,7 +6,7 @@ const Table = ({ countries }) => {
 		<div className='table'>
 			<ol>
 				{countries.map(({ country, cases }) => (
-					<li>
+					<li key={country}>
 						<tr>
 							<td>{country}</td>
 							<td>

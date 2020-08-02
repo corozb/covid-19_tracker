@@ -19,6 +19,10 @@
 8. Create Info Boxes
 9. Create Table
 10. Create Chart
+    Use the library [chart.js 2 ](https://github.com/jerairrest/react-chartjs-2) and [chart.js](https://www.chartjs.org/)
+    `npm install --save react-chartjs-2 chart.js`
+    `npm install numeral`
 11. Create Map
+    `npm i react-leaflet`
 12. Styling
 13. Deploy
