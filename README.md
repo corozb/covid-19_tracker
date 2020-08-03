@@ -23,6 +23,6 @@
     `npm install --save react-chartjs-2 chart.js`
     `npm install numeral`
 11. Create Map
-    `npm i react-leaflet`
+    `npm i react-leaflet leaftet`
 12. Styling
 13. Deploy

@@ -71,14 +71,12 @@ const Chart = ({ casesType }) => {
 
 	// const countryData = country === 'worldwide' ? (country = 'all') : country
 	const url = `https://disease.sh/v3/covid-19/historical/all?lastdays=120`
-	console.log('url', url)
 
 	useEffect(() => {
 		const fetchData = async () => {
 			await fetch(url)
 				.then((response) => response.json())
 				.then((data) => {
-					console.log('chart', data)
 					let chartData = buildChartData(data, casesType)
 					setData(chartData)
 				})
