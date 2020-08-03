@@ -8,11 +8,11 @@ import {
 } from '@material-ui/core'
 import 'leaflet/dist/leaflet.css'
 
-import InfoBox from './components/InfoBox'
+import InfoBox from './components/InfoBox/InfoBox'
 import Map from './components/Map/Map'
 import Table from './components/Table/Table'
 import Chart from './components/Chart/Chart'
-import { sortData } from './utils'
+import { sortData, prettyPrintStat } from './utils'
 import './App.css'
 
 function App() {
@@ -20,13 +20,13 @@ function App() {
 	const [country, setCountry] = useState('worldwide')
 	const [countryInfo, setCountryInfo] = useState({})
 	const [tableData, setTableData] = useState([])
-	const [casesType, setCasesType] = useState('cases')
 	const [mapLocation, setMapLocation] = useState({
 		lat: 34.80746,
 		lng: -40.4796,
 	})
 	const [mapZoom, setMapZoom] = useState(3)
 	const [stage, setStage] = useState([])
+	const [casesType, setCasesType] = useState('cases')
 
 	useEffect(() => {
 		const getWorldwide = async () => {
@@ -90,9 +90,21 @@ function App() {
 				</div>
 
 				<div className='app__stats'>
-					<InfoBox title='Total Cases' cases={countryInfo.cases} />
-					<InfoBox title='Recovered' cases={countryInfo.recovered} />
-					<InfoBox title='Deceased' cases={countryInfo.deaths} />
+					<InfoBox
+						title='Total Cases'
+						cases={prettyPrintStat(countryInfo.todayCases)}
+						total={prettyPrintStat(countryInfo.cases)}
+					/>
+					<InfoBox
+						title='Recovered'
+						cases={prettyPrintStat(countryInfo.todayRecovered)}
+						total={prettyPrintStat(countryInfo.recovered)}
+					/>
+					<InfoBox
+						title='Deceased'
+						cases={prettyPrintStat(countryInfo.todayDeaths)}
+						total={prettyPrintStat(countryInfo.deaths)}
+					/>
 				</div>
 				<Map stage={stage} center={mapLocation} zoom={mapZoom} />
 			</div>
