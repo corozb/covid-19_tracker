@@ -77,7 +77,7 @@ function App() {
 			<div className='app__left'>
 				<div className='app__header'>
 					<h1>COVID 19 Tracker</h1>
-					<FormControl className='app_dropdown'>
+					<FormControl className='app__dropdown'>
 						<Select variant='outlined' value={country} onChange={handleCountry}>
 							<MenuItem value='worldwide'>Worldwide</MenuItem>
 							{countries.map(({ country, countryInfo }) => (
@@ -91,31 +91,44 @@ function App() {
 
 				<div className='app__stats'>
 					<InfoBox
+						isRed
+						active={casesType === 'cases'}
+						onClick={(event) => setCasesType('cases')}
 						title='Total Cases'
 						cases={prettyPrintStat(countryInfo.todayCases)}
 						total={prettyPrintStat(countryInfo.cases)}
 					/>
 					<InfoBox
+						active={casesType === 'recovered'}
+						onClick={(event) => setCasesType('recovered')}
 						title='Recovered'
 						cases={prettyPrintStat(countryInfo.todayRecovered)}
 						total={prettyPrintStat(countryInfo.recovered)}
 					/>
 					<InfoBox
+						isRed
+						active={casesType === 'deaths'}
+						onClick={(event) => setCasesType('deaths')}
 						title='Deceased'
 						cases={prettyPrintStat(countryInfo.todayDeaths)}
 						total={prettyPrintStat(countryInfo.deaths)}
 					/>
 				</div>
-				<Map stage={stage} center={mapLocation} zoom={mapZoom} />
+				<Map
+					casesType={casesType}
+					stage={stage}
+					center={mapLocation}
+					zoom={mapZoom}
+				/>
 			</div>
 
 			<Card className='app__right'>
 				<CardContent>
-					<h1>Live Cases by Country</h1>
+					<h3>Live Cases by Country</h3>
 					<Table countries={tableData} />
 				</CardContent>
 				<CardContent>
-					<h1>Worldwide new cases</h1>
+					<h3 className='app__chartTitle'>Worldwide new {casesType}</h3>
 					<Chart casesType={casesType} />
 				</CardContent>
 			</Card>

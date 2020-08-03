@@ -47,6 +47,27 @@ const options = {
 	},
 }
 
+const casesTypeColors = {
+	cases: {
+		hex: '#CC1034',
+		rgb: 'rgb(204, 16, 52)',
+		half_op: 'rgba(204, 16, 52, 0.5)',
+		multiplier: 800,
+	},
+	recovered: {
+		hex: '#7dd71d',
+		rgb: 'rgba(125,215,29)',
+		half_op: 'rgba(125,215,29,0.5)',
+		multiplier: 1200,
+	},
+	deaths: {
+		hex: '#fb4443',
+		rgb: 'rgba(251,68,67)',
+		half_op: 'rgba(251,68,67,0.5)',
+		multiplier: 2000,
+	},
+}
+
 const buildChartData = (data, casesType) => {
 	let chartData = []
 	let lastDataPoint
@@ -64,13 +85,14 @@ const buildChartData = (data, casesType) => {
 	return chartData
 }
 
+const url = `https://disease.sh/v3/covid-19/historical/all?lastdays=120`
+
 const Chart = ({ casesType }) => {
 	const [dataChart, setData] = useState({})
 	// https://disease.sh/v3/covid-19/historical/CO?lastdays=120
 	// https://disease.sh/v3/covid-19/historical/all?lastdays=30
 
 	// const countryData = country === 'worldwide' ? (country = 'all') : country
-	const url = `https://disease.sh/v3/covid-19/historical/all?lastdays=120`
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -85,14 +107,14 @@ const Chart = ({ casesType }) => {
 	}, [casesType])
 
 	return (
-		<div>
+		<div className='app__chart'>
 			{dataChart?.length > 0 && (
 				<Line
 					data={{
 						datasets: [
 							{
-								backgroundColor: 'rgba(204, 16, 52, 0.5)',
-								borderColor: '#CC1034',
+								backgroundColor: casesTypeColors[casesType].half_op,
+								borderColor: casesTypeColors[casesType].hex,
 								data: dataChart,
 							},
 						],
