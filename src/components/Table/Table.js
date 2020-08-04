@@ -4,20 +4,21 @@ import './Table.css'
 
 const Table = ({ countries }) => {
 	return (
-		<div className='table'>
-			<ol>
-				{countries.map(({ country, cases }) => (
-					<li key={country}>
-						<tr>
-							<td>{country}</td>
-							<td>
-								<strong>{numeral(cases).format('0,0')}</strong>
-							</td>
-						</tr>
-					</li>
-				))}
-			</ol>
-		</div>
+		<>
+			<h3>Live Cases by Country</h3>
+			<div className='table'>
+				<ol>
+					{countries.map(({ country, cases }) => (
+						<li key={country}>
+							<span>
+								<h4>{country}</h4>
+								<h4>{numeral(cases).format('0,0')}</h4>
+							</span>
+						</li>
+					))}
+				</ol>
+			</div>
+		</>
 	)
 }
 

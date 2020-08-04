@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import {
-	FormControl,
-	Select,
-	MenuItem,
-	CardContent,
-	Card,
-} from '@material-ui/core'
-import 'leaflet/dist/leaflet.css'
+import { CardContent, Card } from '@material-ui/core'
 
+import Header from './components/Header/Header'
 import InfoBox from './components/InfoBox/InfoBox'
 import Map from './components/Map/Map'
 import Table from './components/Table/Table'
 import Chart from './components/Chart/Chart'
-import { sortData, prettyPrintStat } from './utils'
+import { getUrl, sortData, prettyPrintStat } from './components/Utils/utils'
 import './App.css'
 
 function App() {
@@ -30,7 +24,7 @@ function App() {
 
 	useEffect(() => {
 		const getWorldwide = async () => {
-			await fetch('https://disease.sh/v3/covid-19/all')
+			await fetch(getUrl.getAll)
 				.then((response) => response.json())
 				.then((data) => {
 					setCountryInfo(data)
@@ -41,7 +35,7 @@ function App() {
 
 	useEffect(() => {
 		const getCountries = async () => {
-			await fetch('https://disease.sh/v3/covid-19/countries')
+			await fetch(getUrl.getCountries)
 				.then((response) => response.json())
 				.then((data) => {
 					setCountries(data)
@@ -59,8 +53,8 @@ function App() {
 
 		const url =
 			countryCode === 'worldwide'
-				? 'https://disease.sh/v3/covid-19/all'
-				: `https://disease.sh/v3/covid-19/countries/${countryCode}`
+				? getUrl.getAll
+				: `${getUrl.getCountries}${countryCode}`
 
 		await fetch(url)
 			.then((response) => response.json())
@@ -75,43 +69,35 @@ function App() {
 	return (
 		<div className='app'>
 			<div className='app__left'>
-				<div className='app__header'>
-					<h1>COVID 19 Tracker</h1>
-					<FormControl className='app__dropdown'>
-						<Select variant='outlined' value={country} onChange={handleCountry}>
-							<MenuItem value='worldwide'>Worldwide</MenuItem>
-							{countries.map(({ country, countryInfo }) => (
-								<MenuItem value={countryInfo.iso2} key={country}>
-									{country}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</div>
-
+				<Header
+					country={country}
+					countries={countries}
+					handleCountry={handleCountry}
+				/>
+				<h5>{prettyPrintStat(countryInfo.cases)} total cases</h5>
 				<div className='app__stats'>
 					<InfoBox
 						isRed
 						active={casesType === 'cases'}
 						onClick={(event) => setCasesType('cases')}
-						title='Total Cases'
+						title='Active'
+						total={prettyPrintStat(countryInfo.active)}
 						cases={prettyPrintStat(countryInfo.todayCases)}
-						total={prettyPrintStat(countryInfo.cases)}
 					/>
 					<InfoBox
 						active={casesType === 'recovered'}
 						onClick={(event) => setCasesType('recovered')}
 						title='Recovered'
-						cases={prettyPrintStat(countryInfo.todayRecovered)}
 						total={prettyPrintStat(countryInfo.recovered)}
+						cases={prettyPrintStat(countryInfo.todayRecovered)}
 					/>
 					<InfoBox
 						isRed
 						active={casesType === 'deaths'}
 						onClick={(event) => setCasesType('deaths')}
 						title='Deceased'
-						cases={prettyPrintStat(countryInfo.todayDeaths)}
 						total={prettyPrintStat(countryInfo.deaths)}
+						cases={prettyPrintStat(countryInfo.todayDeaths)}
 					/>
 				</div>
 				<Map
@@ -123,13 +109,15 @@ function App() {
 			</div>
 
 			<Card className='app__right'>
-				<CardContent>
-					<h3>Live Cases by Country</h3>
+				<CardContent className='app__table'>
 					<Table countries={tableData} />
 				</CardContent>
-				<CardContent>
-					<h3 className='app__chartTitle'>Worldwide new {casesType}</h3>
-					<Chart casesType={casesType} />
+				<CardContent className='app__chart'>
+					<Chart
+						casesType={casesType}
+						country={country}
+						countryInfo={countryInfo}
+					/>
 				</CardContent>
 			</Card>
 		</div>

@@ -1,19 +1,24 @@
 .table {
-	margin-top: 20px;
-	height: 382px;
-	overflow: auto;
-	color: #6a5d5d;
+  margin-top: 20px;
+  height: 382px;
+  overflow: auto;
+  color: #6a5d5d;
 }
 
-.table tr {
-	display: flex;
-	justify-content: space-between;
-}
-
-.table td {
-	padding: 0.5rem;
+.table li {
+  padding: 0.5rem;
 }
 
 .table li:nth-of-type(odd) {
-	background-color: #f3f2f8;
+  background-color: #f3f2f8;
 }
+
+.table li span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/*# sourceMappingURL=Table.css.map */

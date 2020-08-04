@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import numeral from 'numeral'
 
+import Notification from '../Utils/Notification'
+import { getUrl, casesTypeColors } from '../Utils/utils'
+
 const options = {
 	legend: {
 		display: false,
@@ -47,27 +50,6 @@ const options = {
 	},
 }
 
-const casesTypeColors = {
-	cases: {
-		hex: '#CC1034',
-		rgb: 'rgb(204, 16, 52)',
-		half_op: 'rgba(204, 16, 52, 0.5)',
-		multiplier: 800,
-	},
-	recovered: {
-		hex: '#7dd71d',
-		rgb: 'rgba(125,215,29)',
-		half_op: 'rgba(125,215,29,0.5)',
-		multiplier: 1200,
-	},
-	deaths: {
-		hex: '#fb4443',
-		rgb: 'rgba(251,68,67)',
-		half_op: 'rgba(251,68,67,0.5)',
-		multiplier: 2000,
-	},
-}
-
 const buildChartData = (data, casesType) => {
 	let chartData = []
 	let lastDataPoint
@@ -85,44 +67,54 @@ const buildChartData = (data, casesType) => {
 	return chartData
 }
 
-const url = `https://disease.sh/v3/covid-19/historical/all?lastdays=120`
+const Chart = ({ casesType, country, countryInfo }) => {
+	const [dataChart, setDataChart] = useState({})
+	const [alertMessage, setAlertMessage] = useState(null)
 
-const Chart = ({ casesType }) => {
-	const [dataChart, setData] = useState({})
-	// https://disease.sh/v3/covid-19/historical/CO?lastdays=120
-	// https://disease.sh/v3/covid-19/historical/all?lastdays=30
-
-	// const countryData = country === 'worldwide' ? (country = 'all') : country
+	const countryData = country === 'worldwide' ? (country = 'all') : country
+	const url = `${getUrl.getHistory}${countryData}?lastdays=120`
 
 	useEffect(() => {
 		const fetchData = async () => {
 			await fetch(url)
 				.then((response) => response.json())
 				.then((data) => {
-					let chartData = buildChartData(data, casesType)
-					setData(chartData)
+					const stages = countryData === 'all' ? data : data.timeline
+					let chartData = buildChartData(stages, casesType)
+					setDataChart(chartData)
+				})
+				.catch((error) => {
+					setAlertMessage({
+						message: "Country doesn't have any historical data",
+					})
 				})
 		}
 		fetchData()
-	}, [casesType])
+	}, [casesType, url, countryData])
 
 	return (
-		<div className='app__chart'>
-			{dataChart?.length > 0 && (
-				<Line
-					data={{
-						datasets: [
-							{
-								backgroundColor: casesTypeColors[casesType].half_op,
-								borderColor: casesTypeColors[casesType].hex,
-								data: dataChart,
-							},
-						],
-					}}
-					options={options}
-				/>
-			)}
-		</div>
+		<>
+			<h3 className='app__chartTitle'>
+				{countryInfo.country} Total {casesType} evolution
+			</h3>
+			<div className='app__chart'>
+				{dataChart?.length > 0 && (
+					<Line
+						data={{
+							datasets: [
+								{
+									backgroundColor: casesTypeColors[casesType].half_op,
+									borderColor: casesTypeColors[casesType].hex,
+									data: dataChart,
+								},
+							],
+						}}
+						options={options}
+					/>
+				)}
+			</div>
+			{alertMessage && <Notification message={alertMessage.message} />}
+		</>
 	)
 }
 

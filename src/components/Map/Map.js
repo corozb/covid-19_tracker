@@ -1,7 +1,8 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
-import { showDataOnMap } from '../../utils'
+import Bubble from '../Bubble/Bubble'
 import './Map.css'
 
 const Map = ({ casesType, stage, center, zoom }) => {
@@ -12,7 +13,7 @@ const Map = ({ casesType, stage, center, zoom }) => {
 					url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 				/>
-				{showDataOnMap(stage, casesType)}
+				<Bubble data={stage} casesType={casesType} />
 			</LeafletMap>
 		</div>
 	)
