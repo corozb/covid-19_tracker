@@ -29,10 +29,10 @@
 
 ### Tools used:
 
-![](https://miro.medium.com/max/3374/1*FDNeKIUeUnf0XdqHmi7nsw.png)
-![](https://miro.medium.com/max/3840/0*oZLL-N4dGNlBe4Oh.png)
+![](https://img-learnstack-io.sgp1.digitaloceanspaces.com/tool/E8gFxEvH9zx9YcepqkbD8TUVPXHmlANJ5qklZ6zK.jpeg)
+![](https://i.pinimg.com/originals/f3/47/70/f34770503b90f26ea389f557500ff825.png)
 ![](https://lh3.googleusercontent.com/proxy/PQR6q7Z3PTHcLNDT4gCgc2uhb6t-NmV4n9790VoYgSQW1ItzV9hHOQ0_KFfZkS0it5-anIvkGTYzVvlEHgw)
-![](https://el.javier.pro/wp-content/uploads/2016/10/sass-logo-wall.jpg)
+![](https://service.softsmart.in/PTE_online/public/static/www.creative-tim.com/assets/icon-sass-04530e10f1c5c63f6f9aea7a776d0c5ebf655cc4ae2ecab6d092e68583d1ab64.jpg)
 ![](https://rosolutions.com.mx/blog/wp-content/uploads/2018/11/leafletjs-card.png)
 ![](https://cms-assets.tutsplus.com/uploads/users/1251/posts/28384/preview_image/chartjs-tutsplus.jpg)
 ![](https://blog.mycode.website/wp-content/uploads/2018/04/netlify-content.jpg)
