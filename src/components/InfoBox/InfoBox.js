@@ -1,9 +1,23 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@material-ui/core'
+import numeral from 'numeral'
 
+import { prettyPrintStat } from '../Utils/utils'
 import './InfoBox.css'
 
-const InfoBox = ({ title, cases, active, isRed, total, ...props }) => {
+const InfoBox = ({
+	title,
+	cases,
+	active,
+	isRed,
+	total,
+	totalCases,
+	...props
+}) => {
+	let percent = total / totalCases
+	total = prettyPrintStat(total)
+	let perDay = numeral(cases).format('0,0')
+
 	return (
 		<Card
 			onClick={props.onClick}
@@ -18,7 +32,10 @@ const InfoBox = ({ title, cases, active, isRed, total, ...props }) => {
 					{total}
 				</h2>
 				<Typography className='infoBox__total' color='textSecondary'>
-					{cases > 0 ? `${cases} todays` : ''}
+					{(parseFloat(percent) * 100).toFixed(2)} % over total
+				</Typography>
+				<Typography className='infoBox__total' color='textSecondary'>
+					{perDay >= 0 ? '' : `${perDay}  today`}
 				</Typography>
 			</CardContent>
 		</Card>

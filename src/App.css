@@ -6,6 +6,12 @@ body {
   background-color: #f5f6fa;
 }
 
+.MuiToolbar-root {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .app {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14,6 +20,7 @@ body {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   padding: 20px;
+  font-family: 'Baloo Tamma 2', cursive;
 }
 
 .app__header {
@@ -32,6 +39,13 @@ body {
 .app__header > h1 {
   color: #fc3c3c;
   font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.app .MuiTypography-h4 {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 .app__chartTitle {

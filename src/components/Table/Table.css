@@ -1,12 +1,15 @@
+.table__title {
+  padding: 20px 0 20px 0;
+}
+
 .table {
-  margin-top: 20px;
-  height: 382px;
+  height: 530px;
   overflow: auto;
   color: #6a5d5d;
 }
 
 .table li {
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 
 .table li:nth-of-type(odd) {
@@ -20,5 +23,10 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.table__number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
 }
 /*# sourceMappingURL=Table.css.map */
