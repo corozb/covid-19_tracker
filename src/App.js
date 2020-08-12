@@ -28,7 +28,7 @@ function App() {
 	const [stage, setStage] = useState([])
 	const [casesType, setCasesType] = useState('cases')
 
-	const [darkState, setDarkState] = useState(false)
+	const [darkState, setDarkState] = useState(true)
 	const palletType = darkState ? 'dark' : 'light'
 	const darkTheme = createMuiTheme({
 		palette: {
@@ -108,7 +108,7 @@ function App() {
 					</Typography>
 					<div className='app__stats'>
 						<InfoBox
-							isRed
+							isBlue
 							active={casesType === 'cases'}
 							onClick={(event) => setCasesType('cases')}
 							title='Active'
@@ -139,6 +139,7 @@ function App() {
 						stage={stage}
 						center={mapLocation}
 						zoom={mapZoom}
+						dark={darkState}
 					/>
 				</div>
 

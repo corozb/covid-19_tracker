@@ -6,6 +6,7 @@
   height: 530px;
   overflow: auto;
   color: #6a5d5d;
+  color: #1bbae1;
 }
 
 .table li {
@@ -13,7 +14,7 @@
 }
 
 .table li:nth-of-type(odd) {
-  background-color: #f3f2f8;
+  background-color: #425154;
 }
 
 .table li span {

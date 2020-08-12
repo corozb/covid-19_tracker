@@ -37,7 +37,8 @@ body {
 }
 
 .app__header > h1 {
-  color: #fc3c3c;
+  color: #1bbae1;
+  text-shadow: 0 0 10px #1bbae1;
   font-size: 2rem;
   font-family: 'Orbitron', sans-serif;
 }
@@ -89,6 +90,12 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.MuiListItem-root,
+.MuiInputBase-input {
+  font-family: 'Baloo Tamma 2', cursive !important;
+  color: #1bbae1 !important;
 }
 
 .chart {

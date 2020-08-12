@@ -1,12 +1,13 @@
 .info-container {
   width: 150px;
+  font-family: 'Baloo Tamma 2', cursive;
 }
 
 .info-flag {
-  height: 80px;
+  height: 100px;
   width: 100%;
   background-size: cover;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .info-flag img {
@@ -18,10 +19,39 @@
   font-size: 20px;
   font-weight: bold;
   color: #555;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.info-confirmed, .info-recovered, .info-deceases {
-  font-size: 16px;
+.info-data {
+  padding: 13px 19px;
+  text-align: center;
+  color: #1bbae1;
+}
+
+.info-confirmed {
+  color: #555;
+  padding: 10px 20px;
+  font-size: 11px;
+}
+
+.info-active, .info-recovered, .info-deceases {
+  font-size: 14px;
   margin-top: 5px;
+}
+
+.info-recovered {
+  color: #bdfffb;
+}
+
+.info-deceases {
+  color: #cc1034;
+}
+
+.leaflet-popup-content {
+  margin: 3px;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #303030;
 }
 /*# sourceMappingURL=Bubble.css.map */

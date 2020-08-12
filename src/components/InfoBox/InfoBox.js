@@ -10,6 +10,7 @@ const InfoBox = ({
 	cases,
 	active,
 	isRed,
+	isBlue,
 	total,
 	totalCases,
 	...props
@@ -22,13 +23,16 @@ const InfoBox = ({
 		<Card
 			onClick={props.onClick}
 			className={`infoBox ${active && 'infoBox-selected'} ${
-				isRed && 'infoBox--red'
-			}`}>
+				isRed && 'infoBox-red'
+			} ${isBlue && 'infoBox-active'}`}>
 			<CardContent>
 				<Typography className='infoBox__title' color='textSecondary'>
 					{title}
 				</Typography>
-				<h2 className={`infoBox__cases ${!isRed && 'infoBox__cases-green'}`}>
+				<h2
+					className={`infoBox__cases ${isRed && 'infoBox__cases-red'} ${
+						isBlue && 'infoBox__cases-blue'
+					}`}>
 					{total}
 				</h2>
 				<Typography className='infoBox__total' color='textSecondary'>

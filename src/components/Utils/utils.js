@@ -8,18 +8,18 @@ export const getUrl = {
 
 export const casesTypeColors = {
 	cases: {
-		hex: '#CC1034',
-		half_op: 'rgba(204, 16, 52, 0.5)',
+		hex: '#1BBAE1',
+		half_op: 'rgba(26, 180, 218, 0.5)',
 		multiplier: 800,
 	},
 	recovered: {
-		hex: '#7dd71d',
-		half_op: 'rgba(125,215,29,0.5)',
+		hex: '#BDFFFB',
+		half_op: 'rgba(189, 255, 251, 0.5)',
 		multiplier: 1200,
 	},
 	deaths: {
-		hex: '#fb4443',
-		half_op: 'rgba(251,68,67,0.5)',
+		hex: '#CC1034',
+		half_op: 'rgba(204, 16, 52, 0.5)',
 		multiplier: 2000,
 	},
 }
