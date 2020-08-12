@@ -125,4 +125,14 @@ body {
             order: 2;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#1bbae1));
+  background: linear-gradient(transparent, #1bbae1);
+  border-radius: 0.4rem;
+}
 /*# sourceMappingURL=App.css.map */
